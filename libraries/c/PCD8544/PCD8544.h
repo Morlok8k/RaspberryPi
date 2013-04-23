@@ -1,5 +1,5 @@
 /*
-=================================================================================
+ =================================================================================
  Name        : PCD8544.h
  Version     : 0.1
 
@@ -9,17 +9,17 @@
 
  Description : PCD8544 LCD library!
 
-================================================================================
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 2.1 of the License, or (at your option) any later version.
+ ================================================================================
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
 
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Lesser General Public License for more details.
-================================================================================
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ ================================================================================
  */
 #include <stdint.h>
 
@@ -51,36 +51,46 @@ Lesser General Public License for more details.
 
 #define swap(a, b) { uint8_t t = a; a = b; b = t; }
 
- // calibrate clock constants
+// calibrate clock constants
 #define CLKCONST_1  8000
 #define CLKCONST_2  400  // 400 is a good tested value for Raspberry Pi
-
 // keywords
 #define LSBFIRST  0
 #define MSBFIRST  1
 
- void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uint8_t contrast);
- void LCDcommand(uint8_t c);
- void LCDdata(uint8_t c);
- void LCDsetContrast(uint8_t val);
- void LCDclear();
- void LCDdisplay();
- void LCDsetPixel(uint8_t x, uint8_t y, uint8_t color);
- uint8_t LCDgetPixel(uint8_t x, uint8_t y);
- void LCDfillcircle(uint8_t x0, uint8_t y0, uint8_t r,uint8_t color);
- void LCDdrawcircle(uint8_t x0, uint8_t y0, uint8_t r,uint8_t color);
- void LCDdrawrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h,uint8_t color);
- void LCDfillrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h,uint8_t color);
- void LCDdrawline(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t color);
- void LCDsetCursor(uint8_t x, uint8_t y);
- void LCDsetTextSize(uint8_t s);
- void LCDsetTextColor(uint8_t c);
- void LCDwrite(uint8_t c);
- void LCDshowLogo();
- void LCDdrawchar(uint8_t x, uint8_t line, char c);
- void LCDdrawstring(uint8_t x, uint8_t line, char *c);
- void LCDdrawstring_P(uint8_t x, uint8_t line, const char *c);
- void LCDdrawbitmap(uint8_t x, uint8_t y,  const uint8_t *bitmap, uint8_t w, uint8_t h,  uint8_t color);
- void LCDspiwrite(uint8_t c);
- void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
- void _delay_ms(uint32_t t);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST,
+		uint8_t contrast);
+void LCDcommand(uint8_t c);
+void LCDdata(uint8_t c);
+void LCDsetContrast(uint8_t val);
+void LCDclear();
+void LCDdisplay();
+void LCDsetPixel(uint8_t x, uint8_t y, uint8_t color);
+uint8_t LCDgetPixel(uint8_t x, uint8_t y);
+void LCDfillcircle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color);
+void LCDdrawcircle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color);
+void LCDdrawrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color);
+void LCDfillrect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color);
+void LCDdrawline(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t color);
+void LCDsetCursor(uint8_t x, uint8_t y);
+void LCDsetTextSize(uint8_t s);
+void LCDsetTextColor(uint8_t c);
+void LCDwrite(uint8_t c);
+void LCDshowLogo();
+void LCDdrawchar(uint8_t x, uint8_t line, char c);
+void LCDdrawstring(uint8_t x, uint8_t line, char *c);
+void LCDdrawstring_P(uint8_t x, uint8_t line, const char *c);
+void LCDdrawbitmap(uint8_t x, uint8_t y, const uint8_t *bitmap, uint8_t w,
+		uint8_t h, uint8_t color);
+void LCDspiwrite(uint8_t c);
+void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
+void _delay_ms(uint32_t t);
+
+#ifdef __cplusplus
+}
+#endif
+
