@@ -730,7 +730,9 @@ uint8_t LCDgetPixel(uint8_t x, uint8_t y)
 
 void LCDspiwrite(uint8_t c)
 {
+	digitalWrite(_cs, LOW);
 	shiftOut(_din, _sclk, MSBFIRST, c);
+	digitalWrite(_cs, HIGH);
 }
 
 void LCDcommand(uint8_t c)
