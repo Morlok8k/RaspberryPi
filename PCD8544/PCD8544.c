@@ -846,7 +846,8 @@ Just remember that short usleep times require a certain compile-time kernel sett
 			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
 
 		digitalWrite(clockPin, LOW);   //fix by rumpelrausch
-		for(j=0;10;j++);	       //fix by rumpelrausch
+		for (j = CLKCONST_2; j > 0; j--); // clock speed, anyone? (LCD Max CLK input: 4MHz)
+		//for(j=0;10;j++);	       //fix by rumpelrausch (Did not work for me, Morlok8k)
 		digitalWrite(clockPin, HIGH);  //fix by rumpelrausch
 	}
 	digitalWrite(_cs, HIGH);  //fix by rumpelrausch
