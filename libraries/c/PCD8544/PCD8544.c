@@ -1,7 +1,7 @@
 /*
 =================================================================================
  Name        : PCD8544.c
- Version     : 0.1
+ Version     : 0.1.1
 
  Copyright (C) 2010 Limor Fried, Adafruit Industries
  CORTEX-M3 version by Le Dang Dung, 2011 LeeDangDung@gmail.com (tested on LPC1769)
@@ -818,21 +818,40 @@ void LCDclear(void) {
 
 // bitbang serial shift out on select GPIO pin. Data rate is defined by CPU clk speed and CLKCONST_2. 
 // Calibrate these value for your need on target platform.
+//
+// Contains a fix by rumpelrausch - http://binerry.de/post/25787954149/pcd8544-library-for-raspberry-pi#comment-764825732
 void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
 {
+
+/*
+Stability issues:
+I believe the PCD8544 triggers upon high/low, so modifying shiftOut in order to keep clockPin high all the time and just shortly flick it to low makes more sense.
+
+In addition we should take _cs low only if we want to speak to the controller. It appears that the controller resets its internal receiver once _cs goes high, so this is another approach for stability: You might occasionally send crappy data, but next time you call LCDdisplay() everything starts from scratch.
+Once there was a communication fault with the original approach you lost complete control over the display (lockouts as reported).
+
+This way, CLKCONST_2 may be set to a much smaller value (I use 10). Using just a short spinwait and a longer usleep allows for better CPU usage, anyway.
+Just remember that short usleep times require a certain compile-time kernel setting (current raspbian is OK, I use 3.2.27).
+*/
+
+
+	digitalWrite(_cs, LOW);  //fix by rumpelrausch
 	uint8_t i;
 	uint32_t j;
 
-	for (i = 0; i < 8; i++)  {
+	for (i = 0; i < 8; i++) {
 		if (bitOrder == LSBFIRST)
 			digitalWrite(dataPin, !!(val & (1 << i)));
 		else
 			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
 
-		digitalWrite(clockPin, HIGH);
-		for (j = CLKCONST_2; j > 0; j--); // clock speed, anyone? (LCD Max CLK input: 4MHz)
-		digitalWrite(clockPin, LOW);
+		digitalWrite(clockPin, LOW);   //fix by rumpelrausch
+		for(j=0;10;j++);	       //fix by rumpelrausch
+		digitalWrite(clockPin, HIGH);  //fix by rumpelrausch
 	}
+	digitalWrite(_cs, HIGH);  //fix by rumpelrausch
+	// leave a grace period for the controller to work over our data -- rumpelrausch
+	usleep(50);		  //fix by rumpelrausch
 }
 
 // roughly calibrated spin delay

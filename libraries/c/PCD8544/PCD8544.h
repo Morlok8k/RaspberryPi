@@ -1,7 +1,7 @@
 /*
  =================================================================================
  Name        : PCD8544.h
- Version     : 0.1
+ Version     : 0.1.1
 
  Copyright (C) 2010 Limor Fried, Adafruit Industries
  CORTEX-M3 version by Le Dang Dung, 2011 LeeDangDung@gmail.com (tested on LPC1769)

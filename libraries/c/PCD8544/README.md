@@ -8,6 +8,21 @@ Copyright (C) 2010 _Limor Fried_, _Adafruit Industries_
 CORTEX-M3 version by _Le Dang Dung_, 2011 LeeDangDung@gmail.com (tested on LPC1769)
 Raspberry Pi version by _Andre Wussow_, 2012, desk@binerry.de
 
+Versions
+--------
+Version 0.1.1
+bugfixes (and misc. modifications) by:
+_kkjaer_
+_rumpelrausch_
+_jezjestem_
+_Noisyfox_
+_fardke_
+
+All changes were compiled by _Morlok8k_
+
+Version 0.1:
+Initial release by _Andre Wussow_ (aka binerry)
+
 For more informations please visit http://binerry.de/post/25787954149/pcd8544-library-for-raspberry-pi.
 
 License
