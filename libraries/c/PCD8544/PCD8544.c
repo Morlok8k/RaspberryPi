@@ -730,9 +730,9 @@ uint8_t LCDgetPixel(uint8_t x, uint8_t y)
 
 void LCDspiwrite(uint8_t c)
 {
-	digitalWrite(_cs, LOW);
+	digitalWrite(_cs, LOW);	 //fix by kkjaer - Source: http://binerry.de/post/25787954149/pcd8544-library-for-raspberry-pi#comment-892983689
 	shiftOut(_din, _sclk, MSBFIRST, c);
-	digitalWrite(_cs, HIGH);
+	digitalWrite(_cs, HIGH); //fix by kkjaer
 }
 
 void LCDcommand(uint8_t c)
