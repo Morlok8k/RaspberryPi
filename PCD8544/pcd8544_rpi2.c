@@ -83,13 +83,6 @@ int main (void)
 	  }
 	  
 
-	  /* Conversion constants.  */
-	  const long minute = 60;
-	  const long hour = minute * 60;
-	  const long day = hour * 24;
-	  /* Produce output.  */ 
-
-
 	  // uptime
 	  //provides an output that looks like: 5d 23h35m21s (or 23d 2h04m02s)
 	  unsigned long uptime = sys_info.uptime;
