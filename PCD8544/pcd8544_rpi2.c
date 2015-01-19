@@ -107,7 +107,7 @@ int main (void)
 
 	  
 	  // ram info
-	  // used ram / total ram available - (289 / 450MB)
+	  // used ram / total ram available - (289 / 437MB)
 	  char ramInfo[15]; 
 	  unsigned long freeRam = sys_info.freeram / 1024 / 1024;
 	  unsigned long totalRam = sys_info.totalram / 1024 / 1024;
