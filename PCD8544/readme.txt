@@ -37,3 +37,16 @@ Advanced System Monitor	 pcd8544_rpi2.c		cpushow2
 Other files:
 compile.sh		 (Compiles Programs)
 readme.txt		 (This file)
+
+
+
+
+Other Notes:
+Bitmap Info: 
+http://en.radzio.dxp.pl/bitmap_converter/
+Windows .exe file.  Use the default settings (vertical bytes, Little endian, 8 pix/byte)
+Use a 84x48 black and white bitmap (.bmp).
+
+http://www.henningkarlsen.com/electronics/t_imageconverter_mono.php
+web-based.  use a 84x48 black and white PNG file.
+
