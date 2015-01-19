@@ -93,7 +93,7 @@ int main (void)
 	  const long hour = minute * 60;
 	  const long day = hour * 24;
 	  /* Produce output.  */
-	  sprintf (uptimeInfo, "%ldd %ld:%02ld:%02ld\n", uptime / day, 
+	  sprintf (uptimeInfo, "%ldd %ldh%02ldm%02lds", uptime / day, 
 	  (uptime % day) / hour, (uptime % hour) / minute, uptime % minute);
 
 
@@ -103,7 +103,7 @@ int main (void)
 	  float avgCpuLoad1 = sys_info.loads[0] / (float)(1 << SI_LOAD_SHIFT);
 	  float avgCpuLoad5 = sys_info.loads[1] / (float)(1 << SI_LOAD_SHIFT);
 	  float avgCpuLoad15 = sys_info.loads[2] / (float)(1 << SI_LOAD_SHIFT);
-	  sprintf(cpuInfo, "%.2f %.2f %.2f\n", avgCpuLoad1, avgCpuLoad5, avgCpuLoad15);
+	  sprintf(cpuInfo, "%.2f %.2f %.2f", avgCpuLoad1, avgCpuLoad5, avgCpuLoad15);
 
 	  
 	  // ram info
